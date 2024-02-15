@@ -59,46 +59,46 @@ WiFiMon Ansible Playbook may be used to easily install the WiFiMon Analysis Serv
    ~~~
 
 3. Create a DNS record (A) for the following names. They should point to the same IP.
-   - <hostname>.<suffix>
-   - <hostname>-ui.<suffix>
-   - <hostname>-flask.<suffix>
-   - <hostname>-anomaly.<suffix>
-   - <hostname>-elastic.<suffix>
-   - <hostname>-kibana.<suffix>
-   - <hostname>-wts.<suffix>
-   
+    - `<hostname>.<suffix>`
+    - `<hostname>-ui.<suffix>`
+    - `<hostname>-flask.<suffix>`
+    - `<hostname>-anomaly.<suffix>`
+    - `<hostname>-elastic.<suffix>`
+    - `<hostname>-kibana.<suffix>`
+    - `<hostname>-wts.<suffix>`
+       
    > **Note:** This playbook includes installation of  **WiFiMon Test Server** (WTS) on `<hostname>-wts.<suffix>` (that you'll set in `vars/main.yml`) 
 
-4. Ensure that all of them have the same public IP address and their TCP ports 80,443 are accessible.
+5. Ensure that all of them have the same public IP address and their TCP ports 80,443 are accessible.
 
 
-5. In `hosts.cfg` file replace IP addresses with the IP address (or FQDN) of the server on which you plan to install WAS.
+6. In `hosts.cfg` file replace IP addresses with the IP address (or FQDN) of the server on which you plan to install WAS.
 
 
-6. Add your SSH public key to `~/.ssh/authorized_keys`
+7. Add your SSH public key to `~/.ssh/authorized_keys`
    ~~~
    ssh-keygen -o
    cat ~/.ssh/id_rsa.pub
    ~~~
-7. Ensure that your ansible machine has the root access over SSH to the server where you want to install WAS and WTS.
+8. Ensure that your ansible machine has the root access over SSH to the server where you want to install WAS and WTS.
    ~~~
    ansible -m ping WAS
    ~~~
    
-8. Adjust variables in `vars/main.yml`. **Do not use the default passwords in production! Set your own secure passwords!**
+9. Adjust variables in `vars/main.yml`. **Do not use the default passwords in production! Set your own secure passwords!**
 
    > **Note:** Be aware to use the following values:
    > - ELK stack version: 8.8
    > - PostgreSQL version: 15 
    > - WiFiMon agent version: 2.2.0
 
-9. Run the playbook
+10. Run the playbook
    ~~~
    ansible-playbook wifimon.yml
    ~~~
-10. Wait a few minutes (approximately 15 mins)
+11. Wait a few minutes (approximately 15 mins)
 
-11. Access the WiFiMon web-ui `<hostname>-ui.<suffix>`.
+12. Access the WiFiMon web-ui `<hostname>-ui.<suffix>`.
     Credentials are defined in `vars/main.yml`:
    ```
    # Credentials for first login window (wifimon)
